@@ -17,4 +17,5 @@ public class PlatoModel {
     private String descripcion;
     private String urlImagen;
     private Categoria categoria;
+    private Long idRestaurante;
 }

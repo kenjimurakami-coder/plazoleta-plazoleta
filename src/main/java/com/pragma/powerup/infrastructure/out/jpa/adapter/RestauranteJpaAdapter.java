@@ -9,6 +9,7 @@ import com.pragma.powerup.infrastructure.out.jpa.repository.IRestauranteReposito
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 
@@ -30,5 +31,11 @@ public class RestauranteJpaAdapter implements IRestaurantePersistencePort{
             throw new NoDataFoundException();
         }
         return restauranteEntityMapper.toRestauranteModelList(entityList);
+    }
+
+    @Override
+    public Optional<RestauranteModel> findById(Long id) {
+        return restauranteRepository.findById(id)
+                .map(restauranteEntityMapper::toRestauranteModel);
     }
 }
