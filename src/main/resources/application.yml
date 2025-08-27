@@ -1,15 +1,15 @@
 server:
-  port: 8081
+  port: 8080
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/powerup
-    username: root
-    password: 1234
+    url: jdbc:postgresql://localhost:5432/plazoleta_plazoleta
+    username: postgres
+    password: Induccion2025+
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
-appDescription: "Pragma Powerup"
+appDescription: "Plazoleta Plazoleta"
 appVersion: "1.0.0"
