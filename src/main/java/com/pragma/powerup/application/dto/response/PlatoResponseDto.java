@@ -1,4 +1,21 @@
 package com.pragma.powerup.application.dto.response;
 
+import com.pragma.powerup.domain.enums.Categoria;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class PlatoResponseDto {
+    private Long id;
+    private String nombreDelPlato;
+    private Integer precio;
+    private String descripcion;
+    private String urlImagen;
+    private Categoria categoria;
+    private boolean estado;
+    private Long idRestaurante;
 }

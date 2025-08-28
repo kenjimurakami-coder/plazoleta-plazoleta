@@ -35,6 +35,7 @@ public class PlatoEntity {
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
 
+    private boolean estado;
     private Long idRestaurante;
 
 }

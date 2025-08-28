@@ -14,6 +14,5 @@ import java.util.List;
 
 public interface IRestauranteResponseMapper {
     RestauranteRequestDto toResponse(RestauranteModel restauranteModel);
-
     List<RestauranteResponseDto> toResponseList(List<RestauranteModel> restauranteModelList);
 }
