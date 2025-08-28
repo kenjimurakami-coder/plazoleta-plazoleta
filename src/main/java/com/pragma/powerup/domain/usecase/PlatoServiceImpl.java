@@ -4,11 +4,12 @@ import com.pragma.powerup.domain.api.IPlatoServicePort;
 import com.pragma.powerup.domain.model.PlatoModel;
 import com.pragma.powerup.domain.spi.IPlatoPersistencePort;
 import com.pragma.powerup.domain.spi.IRestaurantePersistencePort;
-import com.pragma.powerup.domain.exception.DomainException;
+import com.pragma.powerup.domain.exception.UnauthorizedException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +21,7 @@ public class PlatoServiceImpl implements IPlatoServicePort {
     @Override
     public PlatoModel savePlato(PlatoModel plato) {
         restaurantePersistencePort.findById(plato.getIdRestaurante())
-                .orElseThrow(() -> new DomainException("El restaurante con el ID proporcionado no existe."));
+                .orElseThrow(() -> new UnauthorizedException("Restaurante no encontrado"));
         return platoPersistencePort.savePlato(plato);
     }
 
@@ -28,4 +29,24 @@ public class PlatoServiceImpl implements IPlatoServicePort {
     public List<PlatoModel> getAllPlato() {
         return platoPersistencePort.getAllPlato();
     }
+
+    @Override
+    public Optional<PlatoModel> findById(Long id) {
+        return platoPersistencePort.findById(id);
+    }
+
+    @Override
+    public void updatePlato(PlatoModel platoModel) {
+        // Find the dish in the database
+        Optional<PlatoModel> optionalPlato = platoPersistencePort.findById(platoModel.getId());
+        PlatoModel existingPlato = optionalPlato
+                .orElseThrow(() -> new UnauthorizedException("Plato no encontrado"));
+
+        // Update the dish's price and description
+        existingPlato.setPrecio(platoModel.getPrecio());
+        existingPlato.setDescripcion(platoModel.getDescripcion());
+
+        platoPersistencePort.savePlato(existingPlato);
+    }
+
 }

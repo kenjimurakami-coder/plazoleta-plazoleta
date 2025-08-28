@@ -17,6 +17,7 @@ configurations {
 
 repositories {
 	mavenCentral()
+    maven { url "https://repo.spring.io/milestone" }
 }
 
 ext {
@@ -26,6 +27,12 @@ ext {
 	lombokMapstructBindingVersion = "0.2.0"
 	mySqlConnectorVersion = "8.0.32"
 	openApiVersion = "1.6.11"
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:2021.0.3"
+    }
 }
 
 dependencies {
@@ -47,8 +54,15 @@ dependencies {
 	implementation "org.springdoc:springdoc-openapi-webflux-ui:${openApiVersion}"
 
     implementation 'org.postgresql:postgresql:42.7.3'//DB PostgreSQL
-    implementation 'org.springframework.boot:spring-boot-starter-webflux'//Web Client
-    implementation 'org.springframework.boot:spring-boot-starter-security'
+    //implementation 'org.springframework.boot:spring-boot-starter-webflux'//Web Client
+    implementation 'org.springframework.boot:spring-boot-starter-security'//Spring security
+    implementation 'io.netty:netty-resolver-dns-native-macos'//Netty para macOS
+    implementation 'io.netty:netty-resolver-dns-native-macos:4.1.79.Final:osx-aarch_64'//Netty creo que sí es este
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'//Feign Client
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'//jwt
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'//jwt
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'//jwt
 
 }
 

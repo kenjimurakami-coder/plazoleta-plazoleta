@@ -1,4 +1,4 @@
-package com.pragma.powerup.infrastructure.out.jpa.adapter;
+/*package com.pragma.powerup.infrastructure.out.jpa.adapter;
 
 import com.pragma.powerup.domain.enums.Role;
 import com.pragma.powerup.domain.spi.IUserValidationPort;
@@ -37,4 +37,13 @@ public class UserValidationAdapter implements IUserValidationPort {
         }
     }
 
+    @Override
+    public Long getUserIdByUsername(String username) {
+        // Lógica para llamar al microservicio de usuarios y obtener el ID
+        // El endpoint podría ser algo como /api/v1/usuarios/id/{username}
+        // Tendrías que implementar este endpoint en el microservicio de usuarios.
+        return null;
+    }
+
 }
+*/

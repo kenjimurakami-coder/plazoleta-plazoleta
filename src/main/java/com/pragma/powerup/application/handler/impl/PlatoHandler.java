@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -32,5 +33,17 @@ public class PlatoHandler implements IPlatoHandler {
     @Override
     public List<PlatoResponseDto> getAllPlato() {
         return platoResponseMapper.toResponseList(platoServicePort.getAllPlato());
+    }
+
+    @Override
+    public Optional<PlatoResponseDto> findById(Long id) {
+        return platoServicePort.findById(id)
+                .map(platoResponseMapper::toResponse);
+    }
+
+    @Override
+    public void updatePlato(PlatoRequestDto platoRequestDto) {
+        PlatoModel platoModel = platoRequestMapper.toPlato(platoRequestDto);
+        platoServicePort.updatePlato(platoModel);
     }
 }

@@ -7,12 +7,19 @@ spring:
     username: postgres
     password: Induccion2025+
 
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
+jpa:
+  hibernate:
+    ddl-auto: update
+  show-sql: true
+
 appDescription: "Plazoleta Plazoleta"
 appVersion: "1.0.0"
 
 usuarios:
-  url: http://localhost:8081/api/v1/usuarios
+  url: http://localhost:8081
+
+application:
+  security:
+    jwt:
+      secret-key: your-super-secret-key-that-is-at-least-256-bits-long
+      expiration: 86400000
