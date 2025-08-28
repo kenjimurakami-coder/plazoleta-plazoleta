@@ -4,6 +4,7 @@ import com.pragma.powerup.domain.api.IPlatoServicePort;
 import com.pragma.powerup.domain.api.IRestauranteServicePort;
 import com.pragma.powerup.domain.spi.IPlatoPersistencePort;
 import com.pragma.powerup.domain.spi.IRestaurantePersistencePort;
+import com.pragma.powerup.domain.spi.IUserValidationPort;
 import com.pragma.powerup.domain.usecase.PlatoServiceImpl;
 import com.pragma.powerup.domain.usecase.RestauranteServiceImpl;
 import com.pragma.powerup.infrastructure.out.jpa.adapter.PlatoJpaAdapter;
@@ -31,9 +32,11 @@ public class BeanConfiguration {
         return new RestauranteJpaAdapter(restauranteRepository, restauranteEntityMapper);
     }
 
-    @Bean //Restaurante
-    public IRestauranteServicePort restauranteServicePort() {
-        return new RestauranteServiceImpl(restaurantePersistencePort());
+    @Bean
+    public IRestauranteServicePort restauranteServicePort(
+            IRestaurantePersistencePort restaurantePersistencePort,
+            IUserValidationPort userValidationPort) { // 1. Add the missing argument
+        return new RestauranteServiceImpl(restaurantePersistencePort, userValidationPort); // 2. Pass the argument to the constructor
     }
 
     @Bean

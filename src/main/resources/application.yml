@@ -13,3 +13,6 @@ spring:
     show-sql: true
 appDescription: "Plazoleta Plazoleta"
 appVersion: "1.0.0"
+
+usuarios:
+  url: http://localhost:8081/api/v1/usuarios

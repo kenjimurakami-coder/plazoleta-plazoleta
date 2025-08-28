@@ -47,6 +47,9 @@ dependencies {
 	implementation "org.springdoc:springdoc-openapi-webflux-ui:${openApiVersion}"
 
     implementation 'org.postgresql:postgresql:42.7.3'//DB PostgreSQL
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'//Web Client
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
 }
 
 tasks.named('test') {
