@@ -37,12 +37,10 @@ public class PlatoServiceImpl implements IPlatoServicePort {
 
     @Override
     public void updatePlato(PlatoModel platoModel) {
-        // Find the dish in the database
         Optional<PlatoModel> optionalPlato = platoPersistencePort.findById(platoModel.getId());
         PlatoModel existingPlato = optionalPlato
                 .orElseThrow(() -> new UnauthorizedException("Plato no encontrado"));
 
-        // Update the dish's price and description
         existingPlato.setPrecio(platoModel.getPrecio());
         existingPlato.setDescripcion(platoModel.getDescripcion());
 

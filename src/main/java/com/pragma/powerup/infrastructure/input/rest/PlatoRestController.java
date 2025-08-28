@@ -51,4 +51,13 @@ public class PlatoRestController {
     public ResponseEntity<List<PlatoResponseDto>> getAllPlato() {
         return ResponseEntity.ok(platoHandler.getAllPlato());
     }
+
+    @Operation(summary = "Update a dish")
+    @ApiResponse(responseCode = "200", description = "Dish updated", content = @Content)
+    @ApiResponse(responseCode = "404", description = "Dish not found", content = @Content)
+    @PutMapping("/")
+    public ResponseEntity<Void> updatePlato(@RequestBody PlatoRequestDto platoRequestDto) {
+        platoHandler.updatePlato(platoRequestDto);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

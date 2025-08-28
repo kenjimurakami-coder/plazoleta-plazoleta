@@ -15,5 +15,5 @@ public interface IPlatoHandler {
 
     Optional<PlatoResponseDto> findById(Long id);
 
-    void updatePlato(PlatoRequestDto platoRequestDto);
+    void updatePlato( PlatoRequestDto platoRequestDto);
 }
